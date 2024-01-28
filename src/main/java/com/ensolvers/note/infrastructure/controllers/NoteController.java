@@ -37,8 +37,8 @@ public class NoteController {
     }
 
     @GetMapping
-    public List<Note> listNotes(){
-        return noteService.listNotes();
+    public List<Note> listNotes(@RequestParam(required = false) Boolean archived){
+        return noteService.listNotes(archived);
     }
 
     @PatchMapping("/switch-status/{id}")

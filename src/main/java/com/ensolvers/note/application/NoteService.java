@@ -39,8 +39,12 @@ public class NoteService {
         return "edit successfully";
     }
 
-    public List<Note> listNotes() {
-        return noteRepository.findAll();
+    public List<Note> listNotes(Boolean archived) {
+        if(archived==null){
+            return noteRepository.findAll();
+        }else{
+            return noteRepository.findAll().stream().filter(note->note.getIsArchived()==archived).toList();
+        }
     }
 
     public String archiveNote(Long id) {
