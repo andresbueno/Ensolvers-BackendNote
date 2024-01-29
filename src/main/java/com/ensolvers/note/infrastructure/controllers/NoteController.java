@@ -32,17 +32,19 @@ public class NoteController {
     }
 
     @PatchMapping("/{id}")
+    @Operation(summary = "Method to update a note")
     public String editNote(@RequestBody NoteRequest request, @PathVariable Long id){
         return noteService.editNote(id, request);
     }
 
     @GetMapping
+    @Operation(summary = "Method to list all notes")
     public List<Note> listNotes(@RequestParam(required = false) Boolean archived){
         return noteService.listNotes(archived);
     }
 
     @PatchMapping("/switch-status/{id}")
-    @Operation(summary = "Method to  a note")
+    @Operation(summary = "Method to change status to a note")
     public String archiveNote(@PathVariable Long id){
         return noteService.archiveNote(id);
     }
